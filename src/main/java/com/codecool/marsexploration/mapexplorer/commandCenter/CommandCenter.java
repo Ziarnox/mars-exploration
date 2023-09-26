@@ -2,36 +2,32 @@ package com.codecool.marsexploration.mapexplorer.commandCenter;
 
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class CommandCenter {
-private int ID;
-private Coordinate location;
+private final int ID;
+private final Coordinate location;
 private CommandCenterStatus status;
 private Map<String,Integer> resourcesOnStock;
 
-    public CommandCenter(int id, Coordinate location, CommandCenterStatus status, Map<String, Integer> resourcesOnStock) {
+    public CommandCenter(int id, Coordinate location, CommandCenterStatus status) {
         this.ID = id;
         this.location = location;
         this.status = status;
-        this.resourcesOnStock = resourcesOnStock;
+        this.resourcesOnStock = new HashMap<>();
     }
 
     public int getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+
 
     public Coordinate getLocation() {
         return location;
     }
 
-    public void setLocation(Coordinate location) {
-        this.location = location;
-    }
 
     public CommandCenterStatus getStatus() {
         return status;
@@ -58,4 +54,5 @@ private Map<String,Integer> resourcesOnStock;
                 ", resourcesOnStock=" + resourcesOnStock +
                 '}';
     }
+
 }
