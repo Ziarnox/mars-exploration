@@ -1,0 +1,17 @@
+
+|
+java:S2293Ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(°¹åÌÿÿÿÿÿ8¸—Í•­1
+h
+java:S1192;"FDefine a constant instead of duplicating this literal "STEP " 3 times.(€“Å›ÿÿÿÿÿ8¹—Í•­1
+‚
+java:S1450)"`Remove the "movedToLeftBorder" field and declare it as a local variable in the relevant methods.(Ô†¿¢ûÿÿÿÿ8æ—Í•­1
+G	java:S1066"+Replace this use of System.out by a logger.(ÓªÄæ8ë—Í•­1
+L	java:S106C"+Replace this use of System.out by a logger.(§¨‘ûÿÿÿÿ8î—Í•­1
+G	java:S106K"+Replace this use of System.out by a logger.(§¦ØÑ8î—Í•­1
+G	java:S106L"+Replace this use of System.out by a logger.(´úĞí8î—Í•­1
+t
+java:S3776|"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¹§ìØøÿÿÿÿ8ó—Í•­1
+W
+java:S1068)"5Remove this unused "movedToLeftBorder" private field.(Ô†¿¢ûÿÿÿÿ8ı—Í•­1
+M
+java:S1144x"1Remove this unused private "markBaseSpot" method.(®‚°s8ı—Í•­1

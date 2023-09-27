@@ -1,0 +1,21 @@
+
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+w
+Gsrc/main/java/com/codecool/marsexploration/mapexplorer/Application.java,3\7\3725b094da444b1dc309acb9d50a4b63ddbf0fd2
+w
+Gsrc/main/java/com/codecool/marsexploration/mapexplorer/rover/Rover.java,4\6\469d9ee1d158c332a925ec6e9a71527ce87a3dcc
+
+Osrc/main/java/com/codecool/marsexploration/mapexplorer/maploader/model/Map.java,a\6\a636d3626d4bfae073bbc68174d17a3efb19209a
+‹
+[src/main/java/com/codecool/marsexploration/mapexplorer/rover/RoverCommandCenterBuilder.java,1\7\17a761c0b115ccbac8eb5d35ea8712df63e4151c
+‡
+Wsrc/main/java/com/codecool/marsexploration/mapexplorer/rover/RoverResourcesManager.java,9\2\92c8ac60c1e4a9869232604f6fdfac7384511e42
+†
+Vsrc/main/java/com/codecool/marsexploration/mapexplorer/rover/RoverMovementRoutine.java,8\7\8768483bd79b0675f482839c9f8113c9f494a737
+‹
+[src/main/java/com/codecool/marsexploration/mapexplorer/simulation/ExplorationSimulator.java,7\8\7877cab1bf50f6b8d2447fe5768791503e152141
+ƒ
+Ssrc/test/java/com/codecool/marsexploration/mapexplorer/rover/RoverDeployerTest.java,3\1\3187716822cff42169a553e65eb6a9b7a70102a6
+ˆ
+Xsrc/main/java/com/codecool/marsexploration/mapexplorer/simulation/SimulationContext.java,6\0\60851343c52911481f2198621f6a2d185ec886a4

@@ -13,12 +13,12 @@ import com.codecool.marsexploration.mapexplorer.maploader.MapLoader;
 import com.codecool.marsexploration.mapexplorer.maploader.impl.MapLoaderImpl;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Map;
-import com.codecool.marsexploration.mapexplorer.rover.Rover;
-import com.codecool.marsexploration.mapexplorer.rover.RoverDeployer;
-import com.codecool.marsexploration.mapexplorer.rover.RoverMovementRoutine;
+import com.codecool.marsexploration.mapexplorer.model.Resource;
+import com.codecool.marsexploration.mapexplorer.rover.*;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +35,8 @@ public class ExplorationSimulator {
     Analyzer successAnalyzer;
     Analyzer timeoutAnalyzer;
     RoverMovementRoutine roverMovementRoutine;
+    RoverCommandCenterBuilder roverCommandCenterBuilder;
+    RoverResourcesManager roverResourcesManager;
     private boolean movedToLeftUpperCorner = false;
     private boolean movedToRightBorder = false;
     private boolean movedToLeftBorder = false;
@@ -45,7 +47,9 @@ public class ExplorationSimulator {
         if (validateConfiguration()) {
             markLandingSpot();
             deployRover();
-
+            roverMovementRoutine.moveToDesignedCoordinate(new Coordinate(1, 25));
+            rerenderMap(simulationConfiguration.mapFilePath(), simulationContext, simulationConfiguration.landingCoordinates());
+            printMap();
             while (!successAnalyzer.wereOutcomeConditionsMet() && !timeoutAnalyzer.wereOutcomeConditionsMet()) {
                 exploreMap();
                 System.out.println(simulationContext.getRover().getResourcesString());
@@ -59,7 +63,40 @@ public class ExplorationSimulator {
             if (successAnalyzer.wereOutcomeConditionsMet()) {
                 consoleLogger.log("Simulation succeed!");
                 fileLogger.log("STEP " + simulationContext.getNumberOfSteps() + "; EVENT outcome; OUTCOME COLONIZABLE");
-                System.exit(0);
+                Coordinate coordinateForBase = roverCommandCenterBuilder.returnBestSpotForBase();
+                simulationContext.setBaseLocation(coordinateForBase);
+                //simulationContext.commandCenter = new CommandCenter(simulationContext.getRover());
+                //private Rover rover; this.rover=rover;
+                //collectResourcesFromRover
+                //hashMapaBazy dodac resourcy rover -> rover.empty();
+                // bazaHashMap.put(%,this.rover.getResourceBag().get("%");
+
+                System.out.println(coordinateForBase);
+                for (Resource resource : simulationContext.getRover().getResources()) {
+                    if (resource.getSymbol().equals("%")) {
+                        roverMovementRoutine.moveToDesignedCoordinate(resource.getCoordinate());
+
+                        rerenderMap(simulationConfiguration.mapFilePath(), simulationContext, simulationConfiguration.landingCoordinates());
+
+                        printMap();
+                        for (int i = 0; i < 5; i++) {
+                            roverResourcesManager.collectResource(resource);
+                            roverMovementRoutine.moveToDesignedCoordinate(simulationContext.getBaseLocation());
+                            System.out.println(simulationContext.getRover().getCurrentPosition());
+                            rerenderMap(simulationConfiguration.mapFilePath(),simulationContext,simulationConfiguration.landingCoordinates());
+                            printMap();
+                            //TODO deliver resources
+
+                            roverMovementRoutine.moveToDesignedCoordinate(resource.getCoordinate());
+                            System.out.println(simulationContext.getRover().getCurrentPosition());
+                            rerenderMap(simulationConfiguration.mapFilePath(),simulationContext,simulationConfiguration.landingCoordinates());
+                            printMap();
+                        }
+                        break;
+                        //y: 5 x:22/23
+                    }
+                }
+
             } else {
                 consoleLogger.log("Timeout reached!");
                 fileLogger.log("STEP " + simulationContext.getNumberOfSteps() + "; EVENT outcome; OUTCOME TIMEOUT");
@@ -70,22 +107,38 @@ public class ExplorationSimulator {
         }
     }
 
-    private static void rerenderMap(String mapPath, SimulationContext simulationContext, Coordinate landingSpot) {
+    public static void rerenderMap(String mapPath, SimulationContext simulationContext, Coordinate landingSpot) {
         MapLoader mapLoader = new MapLoaderImpl();
         Map map = mapLoader.load(mapPath);
         int x = simulationContext.getRover().getCurrentPosition().X();
         int y = simulationContext.getRover().getCurrentPosition().Y();
+        if (simulationContext.getBaseLocation() != null)
+            map.getRepresentation()[simulationContext.getBaseLocation().Y()][simulationContext.getBaseLocation().X()] = "c";
         map.getRepresentation()[y][x] = "R";
         map.getRepresentation()[landingSpot.Y()][landingSpot.X()] = "X";
+
         simulationContext.getMap().setRepresentation(map.getRepresentation());
     }
+
 
     private void createRoverMovementRoutine() {
         this.roverMovementRoutine = new RoverMovementRoutine(simulationContext.getRover(), simulationContext.getMap());
     }
 
+    private void createRoverCommandCenterBuilder() {
+        this.roverCommandCenterBuilder = new RoverCommandCenterBuilder(simulationContext.getRover(), simulationContext.getMap());
+    }
+
+    private void createRoverResourcesManager() {
+        this.roverResourcesManager = new RoverResourcesManager(simulationContext.getRover(), simulationContext.getMap());
+    }
+
     private void markLandingSpot() {
         simulationContext.getMap().getRepresentation()[simulationConfiguration.landingCoordinates().Y()][simulationConfiguration.landingCoordinates().X()] = "X";
+    }
+
+    private void markBaseSpot(Coordinate coordinate) {
+        simulationContext.getMap().getRepresentation()[coordinate.Y()][coordinate.X()] = "c";
     }
 
     private void exploreMap() {
@@ -121,7 +174,7 @@ public class ExplorationSimulator {
         }
     }
 
-    private void printMap() {
+    public void printMap() {
         consoleLogger.log(simulationContext.getMap().toString());
     }
 
@@ -136,6 +189,8 @@ public class ExplorationSimulator {
         createConfigurationValidator();
         createAnalyzers();
         createRoverMovementRoutine();
+        createRoverCommandCenterBuilder();
+        createRoverResourcesManager();
     }
 
     private void createAnalyzers() {

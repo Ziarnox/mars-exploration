@@ -16,6 +16,7 @@ public class SimulationContext {
     private Map map;
     private List<String> symbolsOfResources;
     private List<String> explorationOutcome;
+    private Coordinate baseLocation;
 
     public SimulationContext(int numberOfSteps, int requiredNumberOfSteps, Rover rover, Coordinate spaceshipLocation, Map map, List<String> symbolsOfResources, List<String> explorationOutcome) {
         this.numberOfSteps = numberOfSteps;
@@ -38,7 +39,13 @@ public class SimulationContext {
     public Coordinate getSpaceshipLocation() {
         return spaceshipLocation;
     }
+    public void setBaseLocation(Coordinate coordinate){
+        this.baseLocation=coordinate;
+    }
 
+    public Coordinate getBaseLocation() {
+        return baseLocation;
+    }
 
     public Map getMap() {
         return map;

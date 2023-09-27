@@ -1,0 +1,18 @@
+
+]	java:S125"<This block of commented-out lines of code should be removed.(ü”’óûÿÿÿÿ8„œÎ…­1
+[
+java:S1854"9Remove this useless assignment to local variable "value".(’ªå—ÿÿÿÿÿ8ÇÙÌ…­1
+Y
+java:S1854"<Remove this useless assignment to local variable "resource".(ˆ¤€Ä8ÇÙÌ…­1
+J
+java:S1481"-Remove this unused "resource" local variable.(ˆ¤€Ä8¦ÖŞŠ­1
+L
+java:S1481"*Remove this unused "value" local variable.(’ªå—ÿÿÿÿÿ8ÉÙÌ…­1
+O
+java:S1135"2Complete the task associated to this TODO comment.(Ñ“î¸8ÉÙÌ…­1
+D
+java:S1068"'Remove this unused "map" private field.(é•·õ8¿¸ä…­1
+Q
+java:S1144"4Remove this unused private "collectResource" method.(Û‰Ğ¬8ÉÙÌ…­1
+T
+java:S1144"2Remove this unused private "deliverToBase" method.(œŞ×ƒÿÿÿÿÿ8ÉÙÌ…­1

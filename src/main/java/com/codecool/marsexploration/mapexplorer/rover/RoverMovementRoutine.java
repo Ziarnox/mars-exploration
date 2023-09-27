@@ -6,6 +6,7 @@ import com.codecool.marsexploration.mapexplorer.maploader.model.Map;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class RoverMovementRoutine {
     private static Rover rover;
@@ -39,13 +40,30 @@ public class RoverMovementRoutine {
         rover.updateRoverPosition(newCoordinates, map);
     }
 
-    public void moveToLeftUpper(){
-        if(rover.getCurrentPosition().X()>0){
+    public void moveToLeftUpper() {
+        if (rover.getCurrentPosition().X() > 0) {
             moveLeft();
-        }
-        else if(rover.getCurrentPosition().Y()>0){
+        } else if (rover.getCurrentPosition().Y() > 0) {
             moveUp();
         }
+    }
+
+    public void moveToDesignedCoordinate(Coordinate coordinate) {
+        while (!rover.getCurrentPosition().equals(coordinate)) {
+
+            if (rover.getCurrentPosition().X() < coordinate.X()) {
+                moveRight();
+            } else if (rover.getCurrentPosition().X() > coordinate.X()) {
+                moveLeft();
+            }
+            if (rover.getCurrentPosition().Y() < coordinate.Y()) {
+                moveDown();
+            }
+            if (rover.getCurrentPosition().Y() > coordinate.Y()) {
+                moveUp();
+            }
+        }
+
     }
 
 

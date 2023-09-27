@@ -1,0 +1,15 @@
+
+Q
+java:S3740"/Provide the parametrized type for this generic.(Ù¥å½úÿÿÿÿ8›¹¸…­1
+Q
+java:S3740("/Provide the parametrized type for this generic.(–Æ¼’üÿÿÿÿ8›¹¸…­1
+v
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¿ÆºÐ8›¹¸…­1
+L
+java:S10662"/Merge this if statement with the enclosing one.(³öŒÙ8œ¹¸…­1
+
+java:S1319("mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(–Æ¼’üÿÿÿÿ8œ¹¸…­1
+>
+java:S1643G"Use a StringBuilder instead.(÷ºê‚ýÿÿÿÿ8œ¹¸…­1
+M
+java:S1068"+Remove this unused "roverID" private field.(ïåÌ§üÿÿÿÿ8Í¹¸…­1
