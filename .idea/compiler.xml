@@ -9,8 +9,5 @@
         <module name="mars-exploration" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="mars-exploration" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
