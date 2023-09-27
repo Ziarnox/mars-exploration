@@ -61,6 +61,8 @@ public class ExplorationSimulator {
                         simulationContext.getRover().getCurrentPosition().X() + "," + simulationContext.getRover().getCurrentPosition().Y() + "]");
             }
             if (successAnalyzer.wereOutcomeConditionsMet()) {
+                //Rover rover = new Rover("xd", new Coordinate(5,6),5);
+                //simulationContext.addRover(rover);
                 consoleLogger.log("Simulation succeed!");
                 fileLogger.log("STEP " + simulationContext.getNumberOfSteps() + "; EVENT outcome; OUTCOME COLONIZABLE");
                 Coordinate coordinateForBase = roverCommandCenterBuilder.returnBestSpotForBase();

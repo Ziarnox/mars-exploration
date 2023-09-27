@@ -5,13 +5,14 @@ import com.codecool.marsexploration.mapexplorer.maploader.model.Map;
 import com.codecool.marsexploration.mapexplorer.model.Resource;
 import com.codecool.marsexploration.mapexplorer.rover.Rover;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationContext {
     private int numberOfSteps;
     private int requiredNumberOfSteps;
-
     private Rover rover;
+    private List<Rover> roverList = new ArrayList<>();
     private Coordinate spaceshipLocation;
     private Map map;
     private List<String> symbolsOfResources;
@@ -22,6 +23,7 @@ public class SimulationContext {
         this.numberOfSteps = numberOfSteps;
         this.requiredNumberOfSteps = requiredNumberOfSteps;
         this.rover = rover;
+        this.roverList.add(rover);
         this.spaceshipLocation = spaceshipLocation;
         this.map = map;
         this.symbolsOfResources = symbolsOfResources;
@@ -65,5 +67,11 @@ public class SimulationContext {
 
     public Rover getRover() {
         return rover;
+    }
+    public Rover getRoverOfIndex(int index) {
+        return roverList.get(index);
+    }
+    public void addRover(Rover rover) { //
+        roverList.add(rover);
     }
 }
